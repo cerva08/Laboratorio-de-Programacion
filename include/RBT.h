@@ -109,7 +109,7 @@ int RBT_node_remove(
  *                             de la función
  */
 int RBT_search(
-  struct RBT_node  in_root,
+  struct RBT_node  *in_root,
   float                      num,
   struct RBT_node *found_node);
 
@@ -125,7 +125,7 @@ int RBT_search(
  *                        de la función
  */
 int RBT_max_get(
-  struct RBT_node  in_root,
+  struct RBT_node  *in_root,
   struct RBT_node *max_node);
 
 
@@ -140,7 +140,7 @@ int RBT_max_get(
  *                        de la función
  */
 int RBT_min_get(
-  struct RBT_node  in_root,
+  struct RBT_node  *in_root,
   struct RBT_node *min_node);
 
 
