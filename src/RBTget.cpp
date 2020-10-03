@@ -16,7 +16,8 @@ int RBT_max_get(
     max_node->color = find_max->color;
     max_node->value = find_max->value; 
     max_node->lc_node = find_max->lc_node;
-    max_node->rc_node = find_max->lc_node; 
+    max_node->rc_node = find_max->rc_node; 
+    max_node->p_node = find_max->p_node; 
     return 0; 
   }
 
@@ -31,7 +32,8 @@ int RBT_min_get(
     min_node->color = find->color;
     min_node->value = find->value; 
     min_node->lc_node = find->lc_node;
-    min_node->rc_node = find->lc_node; 
+    min_node->rc_node = find->rc_node; 
+    min_node->p_node = find->p_node; 
     return 0; 
   }
 
@@ -48,18 +50,18 @@ int RBT_search(
                 if (num > temp->value) 
                     temp = temp->rc_node; 
   
-                else if (num < found_node->value) 
+                else if (num < temp->value) 
                     temp = temp->lc_node;
             } 
             else{
                 found_node->color = temp->color;
                 found_node->value = temp->value; 
                 found_node->lc_node = temp->lc_node;
-                found_node->rc_node = temp->lc_node; 
+                found_node->rc_node = temp->rc_node; 
+                found_node->p_node = temp->p_node; 
                 return 0;
             }
     } 
     return -4; 
 } 
-
 
