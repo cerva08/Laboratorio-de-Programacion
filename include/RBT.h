@@ -51,6 +51,14 @@ int RBT_create(
   struct RBT_node *new_root_node);
 
 
+int RBT_right_rotate(
+  struct RBT_node *in_root,
+  struct RBT_node *rotation_node);
+
+int RBT_left_rotate(
+  struct RBT_node *in_root,
+  struct RBT_node *rotation_node);
+
 /**
  * RBT_node_add
  * Toma un nodo y lo inserta en la estructura de datos.
