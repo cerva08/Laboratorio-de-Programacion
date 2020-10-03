@@ -18,21 +18,19 @@ enum RBT_error_codes {
  */
 struct RBT_node {
   /** Puntero al nodo hijo izquierdo */
-   RBT_node *lc_node;
+  struct RBT_node *lc_node;
 
   /** Puntero al nodo hijo derecho */
-  RBT_node *rc_node;
+  struct RBT_node *rc_node;
 
   /** Puntero al nodo padre */
- RBT_node *p_node;
+  struct RBT_node *p_node;
 
   /** Número flotante asociado al nodo */
-  int value;
+  float value;
 
   /** Letra que indica el color asociado al nodo */
-  int color;
-
-  bool first_node;
+  char color;
 
 };
 
@@ -49,9 +47,17 @@ struct RBT_node {
  *                             de la función
  */
 int RBT_create(
-  float in_number_list[],
-  RBT_node* new_root_node);
+  float                     *in_number_list,
+  struct RBT_node *new_root_node);
 
+
+int RBT_right_rotate(
+  struct RBT_node *in_root,
+  struct RBT_node *rotation_node);
+
+int RBT_left_rotate(
+  struct RBT_node *in_root,
+  struct RBT_node *rotation_node);
 
 /**
  * RBT_node_add
@@ -66,9 +72,9 @@ int RBT_create(
  *                        de la función
  */
 int RBT_node_add(
- RBT_node  in_root,
- RBT_node  new_node,
- RBT_node new_root);
+  struct RBT_node  *in_root,
+  struct RBT_node  new_node,
+  struct RBT_node *new_root);
 
 
 /**

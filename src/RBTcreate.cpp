@@ -17,8 +17,8 @@ int RBT_create(
 		new_node.lc_node = nullptr;
 		new_node.rc_node = nullptr;
 		new_node.color = 0;
+        in_root.lc_node = nullptr;
         for (int j = 0; j < 5; j++) {
-            //cout << in_number_list[j];
             //Mejorar esta parte 
             if (j == 0) {
                 in_root.value = 0;
