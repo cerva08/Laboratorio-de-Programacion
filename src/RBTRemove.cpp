@@ -38,21 +38,33 @@ int RBT_node_remove(
       return 0;
   }
   else if (aux.lc_node == NULL){ // Only right child
-      cout << "only right child" << "\n";
-
-        
-
-      aux.p_node = NULL;
-      //aux.rc_node->p_node =  
-      //aux = new_root;
-      //new_root = aux.rc_node;
-      //aux = NULL;
+    cout << "only right child" << "\n";
+    temp.p_node = aux.p_node; // Copia del padre
+    aux.rc_node->p_node = temp.p_node; // Actualiza padre del hijo derecho
+      
+    if (aux.p_node->rc_node->value == aux.value){
+          cout << "Entro aqui\n";
+          aux.p_node->rc_node = aux.rc_node;
+    }
+    else {
+          cout << "Entro aca\n";
+          aux.p_node->lc_node = aux.rc_node;
+    }
 
   }
   else if (aux.rc_node == NULL){ // Only left child
-      //aux = new_root;
-      //new_root = aux.lc_node;
-      //aux = NULL;
+    cout << "only left child" << "\n";
+    temp.p_node = aux.p_node; // Copia del padre
+    aux.lc_node->p_node = temp.p_node; // Actualiza padre del hijo izquierdo
+
+    if (aux.p_node->rc_node->value == aux.value){
+          cout << "Ingr 4\n";
+          aux.p_node->rc_node = aux.lc_node;
+    }
+    else {
+          cout << "Ingr 20\n";
+          aux.p_node->lc_node = aux.lc_node;
+    }
 
   }
   else { // Left and right child
