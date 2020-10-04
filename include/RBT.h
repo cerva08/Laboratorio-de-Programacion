@@ -94,7 +94,9 @@ int RBT_node_remove(
   struct RBT_node  node_to_remove,
   struct RBT_node *new_root);
 
-
+int BST_remove(
+  struct RBT_node* in_root, 
+  float value_to_remove);
 /**
  * RBT_search
  * Toma un número flotante, lo busca y se devuelve el nodo al que pertenece.
