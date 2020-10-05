@@ -8,71 +8,58 @@ int RBT_node_add(
   struct RBT_node *in_root,
   struct RBT_node  *new_node,
   struct RBT_node *new_root) {
-        new_node->p_node = nullptr;
-		new_node->lc_node = nullptr;
-		new_node->rc_node = nullptr;
-		new_node->color = '1';
-        struct RBT_node* x = in_root;
-        struct RBT_node* node_null;
-        node_null->color = 0;
-        node_null->lc_node = nullptr;
-        node_null->rc_node = nullptr;
-
-        // cout << "Color root funcion "<<in_root->color << '\n';
-        // cout << "Valor root funcion "<<in_root->value << '\n';
-        // cout << "Color nuevo nodo funcion "<<new_node->color << '\n';
-        // cout << "Valor nuevo nodo funcion "<<new_node->value << '\n';
-        if (in_root->value == 0) {
-            new_root = new_node;
-            new_root->value = new_node->value;
-            new_root->color = '0'; //Raiz negra
-            new_node->color = '0';
-        }  else {
-            struct RBT_node* y;
-            int z = 1;
-
-        // while (x != TNULL) {
-		// 	y = x;
-		// 	if (node->data < x->data) {
-		// 		x = x->left;
-		// 	} else {
-		// 		x = x->right;
-		// 	}
-		// }
-            while ( x != nullptr) {
-                y = x;
-                if (new_node->value < x->value) {
-                        // if (x->lc_node != nullptr) {
-                        //      cout << "Here 1" << '\n';
-                            x = x->lc_node;
-                        // } else {
-                        //     cout << "Here 2" << '\n';
-                            // z = 0;                
-                        // }
-
-                } else {
-                        // if (x->rc_node != nullptr) {
-                        //     cout << "Here 3" << '\n';
-                            x = x->rc_node;
-                    //     } else {
-                    //         cout << "Here 4" << '\n';
-                            // z = 0;         
-                    //   }
-
-                }
-            }
-            cout << "Color y "<<y->color << '\n';
-            cout << "Valor y "<<y->value << '\n';
-            new_node->p_node = y;
-            cout << "Color padre new nosw"<<new_node->p_node->color << '\n';
-            if (new_node->value < y->value) {
-                y->lc_node= new_node;
-            } else {
-                y->rc_node= new_node;
-            }
-            new_node->color = '1';
-            in_root = new_root;
-            int fix_error = RBT_node_add_fix(in_root, new_node);
+    new_node->p_node = nullptr;
+    new_node->value = new_node->value;
+    new_node->lc_node = nullptr;
+    new_node->rc_node = nullptr;
+    new_node->color = '1';
+    cout << "root value "<<in_root->value << "\n";
+    cout << "root color "<<in_root->color << "\n";
+    cout << "New node value "<<new_node->value << "\n";
+    cout << "New node color "<<new_node->color << "\n";
+    struct RBT_node *y = nullptr;
+    struct RBT_node x = *in_root;
+    struct RBT_node *ip;
+    ip = &x;
+    cout << "Puntero entrada"<< in_root<< "\n";
+    cout << "Puntero ip"<< ip << "\n";
+    if (x.value ==0) {
+        ip = nullptr;
+    }
+    while ( ip != nullptr ) {
+        if (new_node->value ==3) {
+          cout << "Hijo izq de root"<< ip->lc_node << "\n";      
         }
-      return 0;
-  };
+          y = ip;
+          if (new_node->value < ip->value) {
+            ip = ip->lc_node;
+          } else {
+           ip = ip->rc_node;
+
+          }
+      }
+    new_node->p_node = y;
+        if (y == nullptr) {
+          new_root->value = new_node->value;
+          new_root->color = '0';
+        } else if (new_node->value < y->value) {
+            cout << "Entra if" "\n";
+            y->lc_node = new_node;
+            cout << "Hijo izq de y"<< y->lc_node->value << "\n"; 
+        } else {
+            y->rc_node = new_node;
+        }
+        if (new_node->p_node == nullptr) {
+            cout << "Linea 47 "<< "\n";
+            new_node->color = '0';
+            return 0;
+        }
+        if (new_node->p_node->p_node == nullptr) {
+            cout << "Linea 51 "<< "\n";
+            return 0;
+        } 
+        //necesito que el padre y abuelo no sean nulos para llamar
+        int fix_error = RBT_node_add_fix(in_root, new_node);
+
+    return 0;
+};

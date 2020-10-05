@@ -36,6 +36,8 @@
 int RBT_node_add_fix(struct RBT_node* in_root, struct RBT_node* new_node){
   struct RBT_node* temp = in_root;
   struct RBT_node* u;
+  cout << "Entra funcion "<< "\n";
+  cout << "color padre "<< new_node->p_node->color <<"\n";
   while (new_node->p_node->color == '1') {
     cout << "Entra al  while";
     if (new_node->p_node == new_node->p_node->p_node->rc_node) {
