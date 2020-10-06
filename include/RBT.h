@@ -30,7 +30,7 @@ struct RBT_node {
   float value;
 
   /** Letra que indica el color asociado al nodo */
-  char color;
+  int color;
 
 };
 
@@ -46,10 +46,16 @@ struct RBT_node {
  * @returns error_code         un código de error indicando el éxito o error
  *                             de la función
  */
+ #include <iostream>
+ using namespace std;
 int RBT_create(
-  float                     *in_number_list,
-  struct RBT_node *new_root_node);
+  float                     *in_number_list, int size,
+  struct RBT_node **new_root_node);
 
+void printHelper(
+  struct RBT_node *new_root_node, 
+  string indent, 
+  bool last);
 
 int RBT_right_rotate(
   struct RBT_node *in_root,
@@ -73,8 +79,8 @@ int RBT_left_rotate(
  */
 int RBT_node_add(
   struct RBT_node  *in_root,
-  struct RBT_node  new_node,
-  struct RBT_node *new_root);
+  struct RBT_node  *new_node,
+  struct RBT_node **new_root);
 
 
 /**
