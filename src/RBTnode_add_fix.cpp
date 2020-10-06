@@ -3,36 +3,6 @@
 #include <iostream>
 #include "RBTrotations.cpp"
 
-
-// Insert_fix_errors(node_to_insert,tree) {
-//     while (node_to_insert->parent->color == red) {
-//         if (node_to_insert->parent == node_to_insert->grandparent-> left) {
-//             y = node_to_insert->grandparent -> right
-//             if {y->color == red } {
-//                 #Al entrar a este if, se presenta el tercer escenario
-//                 #Tanto el padre como el tío  son rojos.
-//                 #Cambia color el padre
-//                 node_to_insert->parent->color = black
-//                 #Cambia de color el tio
-//                 y->color = black
-//                 #Cambia de color el abuelo
-//                 node_to_insert->grandparent->color = red
-//                 node_to_insert = node_to_insert->grandparent
-//             } else if {node_to_insert == node_to_insert->parent->right} {
-//                 node_to_insert = node_to_insert->parent
-//                 LEFT-ROTATE(tree, node_to_insert)
-//             }
-//             node_to_insert->parent->color = black
-//             node_to_insert->grandparent->color = red
-//             RIGHT-ROTATE(tree, node_to_insert->grandparent)
-//         }
-//         else {
-//             # se hace el mismo código pero intercambiando left con right
-//             # el código es simétrico
-//         }
-//     }
-// }
-
 int RBT_node_add_fix(struct RBT_node* in_root, struct RBT_node* new_node){
   struct RBT_node* temp = in_root;
   struct RBT_node* u;
