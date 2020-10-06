@@ -51,19 +51,14 @@ int RBT_create(
   struct RBT_node *new_root_node);
 
 // TODO: añadir comentarios
-int RBT_right_rotate(
-  struct RBT_node *in_root,
-  struct RBT_node *rotation_node,
-  struct RBT_node *new_root);
+struct RBT_node* RBT_right_rotate(
+    struct RBT_node*  in_root, 
+    struct RBT_node*  rotation_node);
 
-int RBT_left_rotate(
-  struct RBT_node *in_root,
-  struct RBT_node *rotation_node,
-  struct RBT_node *new_root);
+struct RBT_node* RBT_left_rotate(
+    struct RBT_node*  in_root, 
+    struct RBT_node*  rotation_node);
 
-int new_root_setter(
-    struct RBT_node* new_root_setter_values,
-    struct RBT_node* new_root);
 
 /**
  * RBT_node_add
