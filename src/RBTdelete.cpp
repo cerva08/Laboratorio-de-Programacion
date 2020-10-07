@@ -55,7 +55,7 @@ int BST_remove(
     }
 
     int search_result = RBT_search(in_root,value_to_remove,&node_to_delete);
-    if (search_result = -4){
+    if (search_result == -4){
         return -4;
     }
 
