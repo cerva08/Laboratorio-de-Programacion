@@ -14,17 +14,12 @@ int RBT_create(
         int status = 0;
         if (size < 1) return RBT_INVALID_PARAM;
         float init_root_value = in_number_list[0];
-        //Root inicializado
         in_root->value = init_root_value;
         in_root->color = 0;
-        // cout << " create funcion: " <<'\n';
-        // cout << " in_root value: " << in_root->value <<'\n';
         for (int j = 1; j < size; j++) {
             cout << " HERE" <<'\n';
             RBT_node* new_node = new RBT_node;
             new_node->value = in_number_list[j];
-            //primer inroot nodo valido
-            cout << " new_node value: " << new_node->value <<'\n';
             status = RBT_node_add(in_root, new_node, &new_root);
             if (status < 0) return status;
             in_root = new_root;

@@ -53,9 +53,13 @@ int RBT_create(
   struct RBT_node **new_root_node);
 
 void printHelper(
-  struct RBT_node *new_root_node, 
-  string indent, 
+  struct RBT_node *new_root_node,
+  string indent,
   bool last);
+
+int RBT_node_add_fix(
+  struct RBT_node* in_root,
+  struct RBT_node* new_node);
 
 int RBT_right_rotate(
   struct RBT_node *in_root,

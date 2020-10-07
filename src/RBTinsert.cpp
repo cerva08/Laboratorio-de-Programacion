@@ -16,18 +16,12 @@ int RBT_node_add(
     new_node->color = 1;
     RBT_node* y = nullptr;
     RBT_node* x = in_root;
-    cout << "Root value"<< in_root->value << "\n";
-    cout << "Root color" <<in_root->color << "\n";
-    cout << "New node value" << new_node->value << "\n";
-    cout << "New node color  " << new_node->color << "\n";
 		while (x != nullptr) {
 			y = x;
 			if (new_node->value < x->value) {
 				x = x->lc_node;
-        cout << "Izquierdo" << "\n";
 			} else {
 				x = x->rc_node;
-        cout << "Derecho" << "\n";
 			}
 		}
 		new_node->p_node = y;
@@ -48,10 +42,7 @@ int RBT_node_add(
       *new_root = in_root;
 			return status;
 		}
+    int fix_error = RBT_node_add_fix(in_root, new_node);
     *new_root = in_root;
     return status;
-
-    // //int fix_error = RBT_node_add_fix(in_root, *new_node);
-    // return status;
 };
-
