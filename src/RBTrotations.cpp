@@ -5,9 +5,14 @@
 
 using namespace std;
 
-int RBT_right_rotate(
+struct RBT_node* RBT_right_rotate(
     struct RBT_node*  in_root, 
     struct RBT_node*  rotation_node){
+
+    bool is_root = false;
+    if (in_root == rotation_node){
+        is_root = true;
+    }
 
     struct RBT_node* temp = rotation_node->lc_node;
     rotation_node->lc_node = temp->rc_node;
@@ -28,14 +33,23 @@ int RBT_right_rotate(
     temp->rc_node = rotation_node;
     rotation_node->p_node = temp;
 
-    return 0;
+    if (is_root){
+        return temp;
+    } else {
+        return in_root;
+    }
 
 }
 
 
-int RBT_left_rotate(
+struct RBT_node* RBT_left_rotate(
     struct RBT_node*  in_root, 
     struct RBT_node*  rotation_node){
+
+    bool is_root = false;
+    if (in_root == rotation_node){
+        is_root = true;
+    }
 
     struct RBT_node* temp = rotation_node->rc_node;
     rotation_node->rc_node = temp->lc_node;
@@ -56,6 +70,11 @@ int RBT_left_rotate(
     temp->lc_node = rotation_node;
     rotation_node->p_node = temp;
 
-    return 0;
+    if (is_root){
+        return temp;
+    } else {
+        return in_root;
+    }
 
 }
+
