@@ -4,6 +4,10 @@
 /**
  * Códigos de error
  */
+#include <iostream>
+using namespace std;
+
+
 enum RBT_error_codes {
   RBT_SUCCESS       = 0,
   RBT_INVALID_PARAM = -1,
@@ -46,28 +50,27 @@ struct RBT_node {
  * @returns error_code         un código de error indicando el éxito o error
  *                             de la función
  */
- #include <iostream>
- using namespace std;
 int RBT_create(
   float                     *in_number_list, int size,
   struct RBT_node **new_root_node);
+
+// TODO: añadir comentarios
+struct RBT_node* RBT_right_rotate(
+    struct RBT_node*  in_root, 
+    struct RBT_node*  rotation_node);
 
 void printHelper(
   struct RBT_node *new_root_node,
   string indent,
   bool last);
-
 int RBT_node_add_fix(
   struct RBT_node* in_root,
   struct RBT_node* new_node);
 
-int RBT_right_rotate(
-  struct RBT_node *in_root,
-  struct RBT_node *rotation_node);
+struct RBT_node* RBT_left_rotate(
+    struct RBT_node*  in_root, 
+    struct RBT_node*  rotation_node);
 
-int RBT_left_rotate(
-  struct RBT_node *in_root,
-  struct RBT_node *rotation_node);
 
 /**
  * RBT_node_add
@@ -101,10 +104,17 @@ int RBT_node_add(
  */
 int RBT_node_remove(
   struct RBT_node  in_root,
-  struct RBT_node  node_to_remove,
+  float  value_to_remove,
   struct RBT_node *new_root);
 
+int RBT_remove_fixup(
+  struct RBT_node* in_root, 
+  struct RBT_node* node_x);
 
+int BST_remove(
+    struct RBT_node* in_root, 
+    float value_to_remove,
+    struct RBT_node *new_root);
 /**
  * RBT_search
  * Toma un número flotante, lo busca y se devuelve el nodo al que pertenece.
@@ -119,7 +129,7 @@ int RBT_node_remove(
  *                             de la función
  */
 int RBT_search(
-  struct RBT_node  in_root,
+  struct RBT_node  *in_root,
   float                      num,
   struct RBT_node *found_node);
 
@@ -135,7 +145,7 @@ int RBT_search(
  *                        de la función
  */
 int RBT_max_get(
-  struct RBT_node  in_root,
+  struct RBT_node  *in_root,
   struct RBT_node *max_node);
 
 
@@ -150,7 +160,7 @@ int RBT_max_get(
  *                        de la función
  */
 int RBT_min_get(
-  struct RBT_node  in_root,
+  struct RBT_node  *in_root,
   struct RBT_node *min_node);
 
 

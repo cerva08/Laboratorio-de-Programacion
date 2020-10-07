@@ -20,11 +20,11 @@ int RBT_node_add_fix(struct RBT_node* in_root, struct RBT_node* new_node){
       } else {
         if (new_node == new_node->p_node->lc_node) {
           new_node = new_node->p_node;
-          int right_rotate = RBT_right_rotate(in_root, new_node);
+          in_root = RBT_right_rotate(in_root, new_node);
         }
         new_node->p_node->color = 0;
         new_node->p_node->p_node->color = 1;
-        int left_rotate = RBT_left_rotate(in_root,new_node->p_node->p_node);
+        in_root = RBT_left_rotate(in_root,new_node->p_node->p_node);
       }
     }
     else {
@@ -32,6 +32,7 @@ int RBT_node_add_fix(struct RBT_node* in_root, struct RBT_node* new_node){
       u   = new_node->p_node->p_node->rc_node; // uncle
       if (u != 0) {
       if (u->color == 1) {
+        cout << "mirror case 3.1" <<"\n";
         u->color = 0;
         new_node->p_node->color = 0;
         new_node->p_node->p_node->color = 1;
@@ -40,12 +41,22 @@ int RBT_node_add_fix(struct RBT_node* in_root, struct RBT_node* new_node){
       }
      else {
         if (new_node == new_node->p_node->rc_node) {
+          cout << "mirror case 3.2.2" <<"\n";
+           cout << "Tree before left rotate" <<"\n";
+          printHelper(in_root, "", true);
           new_node = new_node->p_node;
-          int left_rotate = RBT_left_rotate(in_root,new_node);
+          in_root = RBT_left_rotate(in_root,new_node);
+          cout << "Tree after left rotate" <<"\n";
+          printHelper(in_root, "", true);
         }
+        cout << "Mirror case 3.2.1" <<"\n";
+        cout << "Tree before right rotate" <<"\n";
+          printHelper(in_root, "", true);
         new_node->p_node->color = 0;
         new_node->p_node->p_node->color = 1;
-        int right_rotate = RBT_right_rotate(in_root,new_node->p_node->p_node);
+        in_root = RBT_right_rotate(in_root,new_node->p_node->p_node);
+        cout << "Tree after right rotate" <<"\n";
+        printHelper(in_root, "", true);
       }
     }
     if (new_node == in_root) {
