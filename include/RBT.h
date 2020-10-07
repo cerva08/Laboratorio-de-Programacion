@@ -51,19 +51,22 @@ int RBT_create(
   struct RBT_node *new_root_node);
 
 
-int RBT_right_rotate(
-  struct RBT_node *in_root,
-  struct RBT_node *rotation_node,
-  struct RBT_node *new_root);
+struct RBT_node* RBT_right_rotate(
+    struct RBT_node*  in_root, 
+    struct RBT_node*  rotation_node);
 
-int RBT_left_rotate(
-  struct RBT_node *in_root,
-  struct RBT_node *rotation_node,
-  struct RBT_node *new_root);
+struct RBT_node* RBT_left_rotate(
+    struct RBT_node*  in_root, 
+    struct RBT_node*  rotation_node);
 
-int new_root_setter (
-    struct RBT_node* new_root_setter_values,
-    struct RBT_node* new_root);
+struct RBT_node* RBT_Transplant(
+    struct RBT_node* in_root, 
+    struct RBT_node* node_to_replace, 
+    struct RBT_node* replacing_node);
+
+struct RBT_node* get_min_address(
+    struct RBT_node min);
+
 
 /**
  * RBT_node_add
@@ -100,7 +103,7 @@ int RBT_node_remove(
   float  value_to_remove,
   struct RBT_node *new_root);
 
-int RBT_remove_fixup(
+struct RBT_node* RBT_remove_fixup(
   struct RBT_node* in_root, 
   struct RBT_node* node_x);
 
