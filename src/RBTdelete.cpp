@@ -40,7 +40,7 @@ struct RBT_node* RBT_Transplant(
     return new_root;
 }
 
-int BST_remove(
+int RBT_node_remove(
     struct RBT_node* in_root, 
     float value_to_remove,
     struct RBT_node* new_root){
@@ -63,12 +63,11 @@ int BST_remove(
     original_color = node_to_delete.color;
 
     if (node_to_delete.lc_node == NULL){
-       // double_black_node_address = node_to_delete.rc_node;
 
         if (node_to_delete.rc_node == NULL){
             if (node_to_delete.p_node->lc_node != NULL && node_to_delete.value == node_to_delete.p_node->lc_node->value){ //left child
                 double_black_node = {NULL,NULL,node_to_delete.p_node->lc_node,-1,'B'};
-            } else {
+            } else { // right child
                 double_black_node = {NULL,NULL,node_to_delete.p_node->rc_node,-1,'B'};
             }
         } else {
@@ -137,25 +136,25 @@ struct RBT_node* RBT_remove_fixup(
     struct RBT_node *sibling_pointer = &sibling;
     struct RBT_node if_null1;
     struct RBT_node if_null2;
-    bool needed_null_filler1 = false;
-    bool needed_null_filler2 = false;
+    bool needed_null_filler1;
+    bool needed_null_filler2;
 
     while (node_x != root_pointer && node_x->color == 'B'){
         needed_null_filler1 = false;
         needed_null_filler2 = false;
         if(node_x == node_x->p_node->lc_node){ // if x_node is left child
             if (node_x->p_node->rc_node == NULL){
-                sibling = {NULL,NULL,node_x->p_node,-1,'B'};
+                sibling = {NULL,NULL,node_x->p_node,-1,'B'}; // a NULL node is needed
             } else {
                 sibling_pointer = node_x->p_node->rc_node;
             }
 
-            if (sibling_pointer->lc_node == NULL){
+            if (sibling_pointer->lc_node == NULL){ // a NULL node is needed
                 if_null1 = {NULL,NULL,sibling_pointer,-1,'B'};
                 sibling_pointer->lc_node = &if_null1;
                 needed_null_filler1 = true;
             }
-            if (sibling_pointer->rc_node == NULL){
+            if (sibling_pointer->rc_node == NULL){ // a NULL node is needed
                 if_null2 = {NULL,NULL,sibling_pointer,-1,'B'};
                 sibling_pointer->rc_node = &if_null2;
                 needed_null_filler2 = true;
@@ -194,17 +193,17 @@ struct RBT_node* RBT_remove_fixup(
 
         } else { // if x_node is right child
             if (node_x->p_node->lc_node == NULL){ // sibling_pointer of x
-                sibling = {NULL,NULL,node_x->p_node,-1,'B'};
+                sibling = {NULL,NULL,node_x->p_node,-1,'B'}; // a NULL node is needed
             } else {
                 sibling_pointer = node_x->p_node->lc_node;
             }
 
-            if (sibling_pointer->lc_node == NULL){
+            if (sibling_pointer->lc_node == NULL){ // a NULL node is needed
                 if_null1 = {NULL,NULL,sibling_pointer,-1,'B'};
                 sibling_pointer->lc_node = &if_null1;
                 needed_null_filler1 = true;
             }
-            if (sibling_pointer->rc_node == NULL){
+            if (sibling_pointer->rc_node == NULL){ // a NULL node is needed
                 if_null2 = {NULL,NULL,sibling_pointer,-1,'B'};
                 sibling_pointer->rc_node = &if_null2;
                 needed_null_filler2 = true;
