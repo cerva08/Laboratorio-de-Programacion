@@ -17,15 +17,20 @@ int RBT_create(
         in_root->value = init_root_value;
         in_root->color = 0;
         for (int j = 1; j < size; j++) {
-            cout << " HERE" <<'\n';
             RBT_node* new_node = new RBT_node;
             new_node->value = in_number_list[j];
             status = RBT_node_add(in_root, new_node, &new_root);
             if (status < 0) return status;
             in_root = new_root;
+            cout << "Tree after insert" <<"\n";
+            printHelper(in_root, "", true);
 
         }
-        //Parametro de salida
+        // cout << "Tree complete" <<"\n";
+        // int root = 1;
+  	    // if (root) {
+    	// 	printHelper(in_root, "", true);
+	    // }
         *new_root_node = in_root;
         return status;
     };

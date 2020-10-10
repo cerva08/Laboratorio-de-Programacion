@@ -39,10 +39,11 @@ int RBT_node_add(
 		}
 		// if the grandparent is null, simply return
 		if (new_node->p_node->p_node == nullptr) {
-      *new_root = in_root;
+      		*new_root = in_root;
 			return status;
 		}
-    int fix_error = RBT_node_add_fix(in_root, new_node);
+	cout << "Antes de fix" << "\n";
+    in_root = RBT_node_add_fix(in_root, new_node);
     *new_root = in_root;
     return status;
 };
