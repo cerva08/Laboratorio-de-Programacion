@@ -50,7 +50,7 @@ int RBT_create(
   float                     *in_number_list,
   struct RBT_node *new_root_node);
 
-
+// TODO: añadir comentarios
 struct RBT_node* RBT_right_rotate(
     struct RBT_node*  in_root, 
     struct RBT_node*  rotation_node);
@@ -66,7 +66,6 @@ struct RBT_node* RBT_Transplant(
 
 struct RBT_node* get_min_address(
     struct RBT_node min);
-
 
 /**
  * RBT_node_add
