@@ -1,10 +1,15 @@
 # Proyecto 1: Estructura de datos avanzada
 
 Integrantes: 
+
 Jose Pablo Laurent Chaves B63761
+
 Maria Jesus Aguilar Esquivel B70120
+
 Carolina Paniagua Penaranda B65268
+
 Marisol Zeledon Cordoba B67969
+
 Bryan Cervantes Ramirez B31726
 
 
