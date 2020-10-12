@@ -99,7 +99,7 @@ int RBT_node_add(
  *                             de la función
  */
 int RBT_node_remove(
-  struct RBT_node  in_root,
+  struct RBT_node*  in_root,
   float  value_to_remove,
   struct RBT_node *new_root);
 
@@ -107,10 +107,6 @@ struct RBT_node* RBT_remove_fixup(
   struct RBT_node* in_root, 
   struct RBT_node* node_x);
 
-int BST_remove(
-    struct RBT_node* in_root, 
-    float value_to_remove,
-    struct RBT_node *new_root);
 /**
  * RBT_search
  * Toma un número flotante, lo busca y se devuelve el nodo al que pertenece.
