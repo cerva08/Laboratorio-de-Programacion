@@ -30,6 +30,6 @@ int main(){
     RBT_node* new_root_node = new RBT_node ;
     status = RBT_create(in_number_list ,size, &new_root_node);
     cout << "Red black tree" <<"\n";
-    printHelper(new_root_node, "", true);
+    RBT_print(new_root_node, "", true);
     return status;
 }

@@ -1,6 +1,65 @@
 #include "../include/RBT.h"
 #include "gtest/gtest.h"
 
+
+TEST(RBTinsert, positive){
+    struct RBT_node N1;
+    struct RBT_node N5;
+    int status;
+    N1 = {NULL, NULL, NULL, 1, 'B'};  
+    N5 = {NULL, NULL, NULL, 5, 'R'}; //root  
+    RBT_node* new_root = new RBT_node;
+    status = RBT_node_add(&N1,&N5,&new_root);
+    EXPECT_EQ(status, 0);
+
+}
+
+TEST(RBTinsert, negative){
+    struct RBT_node N1;
+    struct RBT_node N5;
+    int status;
+    N1 = {NULL, NULL, NULL, 1, 'B'};  
+    N5 = {NULL, NULL, NULL, -5, 'R'}; //root  
+    RBT_node* new_root = new RBT_node;
+    status = RBT_node_add(&N1,&N5,&new_root);
+    EXPECT_EQ(status, -1);
+
+}
+
+TEST(RBTcreate, positive){
+    vector<float> in_number_list;
+    in_number_list.push_back(1);
+    in_number_list.push_back(2);
+    in_number_list.push_back(3);
+    int status;
+    int size = 3;
+    RBT_node* new_root = new RBT_node;
+    status = RBT_create(in_number_list,size,&new_root);
+    EXPECT_EQ(status, 0);
+
+}
+TEST(RBTcreate, negative){
+    vector<float> in_number_list;
+    int status;
+    int size = 0;
+    RBT_node* new_root = new RBT_node;
+    status = RBT_create(in_number_list,size,&new_root);
+    EXPECT_EQ(status, -1);
+
+}
+
+TEST(RBT_print, positive){
+    vector<float> in_number_list;
+    in_number_list.push_back(4);
+    in_number_list.push_back(2);
+    in_number_list.push_back(3);
+    int status;
+    int size = 3;
+    RBT_node* new_root = new RBT_node;
+    status = RBT_create(in_number_list,size,&new_root);
+    RBT_print(new_root, "", true);
+}
+
 TEST(RBTmaxget, positive){
     struct RBT_node N13;
     struct RBT_node N8;
@@ -169,6 +228,7 @@ TEST(RBTremove, positive){
 
 }
 
+
 TEST(RBTremove, negative){
     struct RBT_node N13;
     struct RBT_node N8;
@@ -182,8 +242,6 @@ TEST(RBTremove, negative){
     struct RBT_node N27;
     struct RBT_node min_node, max_node, found_node; 
     int  status1, status2;
-    
-
    
     N13 = {&N8, &N17, NULL, 13, 'B'}; // root  
     N8 = {&N1, &N11, &N13, 8, 'R'};       
@@ -204,7 +262,6 @@ TEST(RBTremove, negative){
     EXPECT_EQ(status2, -1);
 
 }
-
 
 
 int main(int argc, char **argv) {

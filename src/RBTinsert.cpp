@@ -8,6 +8,10 @@ int RBT_node_add(
   struct RBT_node *in_root,
   struct RBT_node *new_node,
   struct RBT_node **new_root) {
+	if (new_node->value < 0) {
+		cout << "Invalid parameter, num should be positive" << "\n";
+		return RBT_INVALID_PARAM;
+	}
     int status = 0;
     new_node->lc_node = nullptr;
     new_node->rc_node = nullptr;

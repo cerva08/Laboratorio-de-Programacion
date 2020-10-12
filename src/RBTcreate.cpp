@@ -12,7 +12,10 @@ int RBT_create(
         RBT_node* in_root = new  RBT_node;
         RBT_node* new_root = new RBT_node;
         int status = 0;
-        if (size < 1) return RBT_INVALID_PARAM;
+        if (size < 1) {
+            cout << "List of numbers is empty, please insert a value" << "\n";
+            return RBT_INVALID_PARAM;
+        }
         float init_root_value = in_number_list[0];
         in_root->value = init_root_value;
         in_root->color = 'B';

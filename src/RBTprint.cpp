@@ -6,7 +6,7 @@
 
 using namespace std;	
     
-    void printHelper(struct RBT_node *new_root_node, string indent, bool last) {
+    void RBT_print(struct RBT_node *new_root_node, string indent, bool last) {
 		// print the tree structure on the screen
 	   	if (new_root_node != nullptr) {
 		   cout<<indent;
@@ -25,7 +25,7 @@ using namespace std;
 		   }
            string sColor = color?"RED":"BLACK";
 		   cout<<new_root_node->value<<"("<<sColor<<")"<<endl;
-		   printHelper(new_root_node->lc_node, indent, false);
-		   printHelper(new_root_node->rc_node, indent, true);
+		   RBT_print(new_root_node->lc_node, indent, false);
+		   RBT_print(new_root_node->rc_node, indent, true);
 		}
 	}

@@ -52,7 +52,7 @@ int RBT_create(
   int size,
   struct RBT_node **new_root_node);
 
-void printHelper(
+void RBT_print(
   struct RBT_node *new_root_node,
   string indent,
   bool last);
