@@ -59,6 +59,9 @@ int RBT_node_remove(
     if (search_result == -4){
         return -4;
     }
+    if (search_result == -1){
+        return -1;
+    }
 
     original_color = node_to_delete.color;
 

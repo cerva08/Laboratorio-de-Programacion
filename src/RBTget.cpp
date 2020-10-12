@@ -63,6 +63,7 @@ int RBT_search(
                 found_node->lc_node = temp->lc_node;
                 found_node->rc_node = temp->rc_node; 
                 found_node->p_node = temp->p_node; 
+                cout << "Value found" << endl; 
                 return 0;
             }
             }
