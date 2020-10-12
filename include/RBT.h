@@ -1,5 +1,6 @@
-// NOTA: sustituir <abreviatura> por la abreviatura correspondiente: avl (AVL)
-// para AVL tree, o rbt (RBT) para Red Black Tree.
+#include <iostream>
+#include <vector>
+using namespace std;
 
 /**
  * Códigos de error
@@ -47,8 +48,17 @@ struct RBT_node {
  *                             de la función
  */
 int RBT_create(
-  float                     *in_number_list,
-  struct RBT_node *new_root_node);
+  std::vector <float> const &in_number_list,
+  int size,
+  struct RBT_node **new_root_node);
+
+void printHelper(
+  struct RBT_node *new_root_node,
+  string indent,
+  bool last);
+  struct RBT_node* RBT_node_add_fix(
+  struct RBT_node* in_root,
+  struct RBT_node* new_node);
 
 // TODO: añadir comentarios
 struct RBT_node* RBT_right_rotate(
@@ -80,9 +90,9 @@ struct RBT_node* get_min_address(
  *                        de la función
  */
 int RBT_node_add(
-  struct RBT_node  in_root,
-  struct RBT_node  new_node,
-  struct RBT_node *new_root);
+  struct RBT_node  *in_root,
+  struct RBT_node  *new_node,
+  struct RBT_node **new_root);
 
 
 /**
@@ -155,14 +165,4 @@ int RBT_min_get(
   struct RBT_node *min_node);
 
 
-/**
- * RBT_print
- * Se imprime el árbol en terminal.
- *
- * @param [in]  in_root   es el nodo raíz original del árbol
- *
- * @returns error_code    un código de error indicando el éxito o error
- *                        de la función
- */
-int RBT_print(
-  struct RBT_node  in_root);
+
