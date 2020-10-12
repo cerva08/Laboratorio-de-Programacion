@@ -44,8 +44,12 @@ int RBT_search(
   struct RBT_node *found_node){
         
         struct RBT_node *temp = in_root;
-        
-        while (temp != NULL) {
+        if (num < 0){
+          cout << "Invalid parameter, num should be positive" << endl;
+          return -1;
+        }
+        else{
+          while (temp != NULL) {
             if(num != temp->value){ 
                 if (num > temp->value) 
                     temp = temp->rc_node; 
@@ -61,7 +65,8 @@ int RBT_search(
                 found_node->p_node = temp->p_node; 
                 return 0;
             }
-    } 
-    return -4; 
+            }
+          cout << "Value not found" << endl;  
+          return -4; 
+        }
 } 
-
