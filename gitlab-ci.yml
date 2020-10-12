@@ -1,0 +1,31 @@
+image: gcc
+
+    
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    before_script:
+    - apt-get update --yes
+    - apt-get install --yes cmake
+    - apt-get install --yes libgtest-dev
+    script:
+    - echo "Build Stage"
+    - mkdir -p build
+    - cd build
+    - cmake ..
+    - make RBT 
+    - make RBTtest
+    artifacts:
+        paths:
+        - build/
+
+test:
+  stage: test
+  script:
+    - echo "Test Stage"
+    - cd build
+    - ./test/tests
+
