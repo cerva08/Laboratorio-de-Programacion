@@ -4,28 +4,12 @@
 #include "../include/RBT.h"
 #include <vector>
 using namespace std;
-void print(std::vector <float> const &a, int size) {
-   //cout << " VALUES TO ARE: " ; 
-   for(int i=0; i < size; i++) {
-   std::cout << a.at(i) << ' ';
-   }
-   cout << "\n";
-}
 int main(){
     int status = 0;
     cout << "RED BLACK TREES" << "\n";
     cout << "EXAMPLE 1" << "\n";
     vector<float> in_number_list;
     int dato = 1;
-    // while (dato) {
-	// cout << "Ingrese un dato" << "\n";
-	// cin >> dato;
-	// if (dato == 0) {
-	// 	break;
-	// } else {
-	// 	in_number_list.push_back(dato);
-	// }
-    // }
     in_number_list.push_back(13);
     in_number_list.push_back(8);
     in_number_list.push_back(17);
@@ -37,7 +21,6 @@ int main(){
     in_number_list.push_back(22);
     in_number_list.push_back(27);
     int size = static_cast<int>(in_number_list.size());
-    // print(in_number_list, size);
     RBT_node* new_root_node = new RBT_node ;
     status = RBT_create(in_number_list ,size, &new_root_node);
     cout << "RED BLACK TREE AFTER INSERTIONS" <<"\n";
@@ -58,6 +41,40 @@ int main(){
     cout << "SEARCH MAX" << "\n";
     struct RBT_node max_node = {NULL, NULL, NULL, 0, 'R'};
     int max = RBT_max_get(new_root_node, &max_node);
+    cout << "MAX VALUE ARE: " << max_node.value <<"\n";
+    in_number_list.clear();
+    cout << "---------------------------------------" << "\n";
+    cout << "EXAMPLE 2" << "\n";
+    in_number_list.push_back(1);
+    in_number_list.push_back(2);
+    in_number_list.push_back(3);
+    in_number_list.push_back(4);
+    in_number_list.push_back(5);
+    in_number_list.push_back(6);
+    in_number_list.push_back(7);
+    in_number_list.push_back(8);
+    in_number_list.push_back(9);
+    RBT_node* new_root_node_example2 = new RBT_node ;
+    size = static_cast<int>(in_number_list.size());
+    status = RBT_create(in_number_list ,size, &new_root_node_example2);
+    cout << "RED BLACK TREE AFTER INSERTIONS" <<"\n";
+    RBT_print(new_root_node_example2, "", true);
+    cout << "DELETE 6" <<"\n";
+    RBT_node_remove(new_root_node_example2, 6, new_root_node_example2);
+    RBT_print(new_root_node_example2, "", true);
+    cout << "SEARCH 1" << "\n";
+    found_node = {NULL, NULL, NULL, 0, 'R'};
+    RBT_search(new_root_node_example2, 1, &found_node);
+    cout << "FOUND VALUE: " << found_node.value <<"\n";
+    cout << "SEARCH 6" << "\n";
+    search = RBT_search(new_root_node_example2, 6, &found_node);
+    cout << "SEARCH MIN" << "\n";
+    min_node = {NULL, NULL, NULL, 0, 'R'};
+    min = RBT_min_get(new_root_node_example2, &min_node);
+    cout << "MIN VALUE ARE: " << min_node.value <<"\n";
+    cout << "SEARCH MAX" << "\n";
+    max_node = {NULL, NULL, NULL, 0, 'R'};
+    max = RBT_max_get(new_root_node_example2, &max_node);
     cout << "MAX VALUE ARE: " << max_node.value <<"\n";
     return status;
 }
