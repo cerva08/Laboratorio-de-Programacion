@@ -16,11 +16,13 @@ int RBT_create(
             cout << "List of numbers is empty, please insert a value" << "\n";
             return RBT_INVALID_PARAM;
         }
+        /*Set root to the value of first element*/
         float init_root_value = in_number_list[0];
         in_root->value = init_root_value;
         cout << "INSERT VALUE: " << in_number_list[0] <<"\n";
         RBT_print(in_root, "", true);
         in_root->color = 'B';
+        /*Go through each element to insert*/
         for (int j = 1; j < size; j++) {
             RBT_node* new_node = new RBT_node;
             new_node->value = in_number_list[j];

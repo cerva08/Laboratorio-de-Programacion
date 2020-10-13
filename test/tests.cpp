@@ -1,7 +1,8 @@
 #include "../include/RBT.h"
 #include "gtest/gtest.h"
-
-
+#include <chrono>
+#include <fstream>
+#include <time.h> 
 TEST(RBTinsert, positive){
     struct RBT_node N1;
     struct RBT_node N5;
@@ -262,9 +263,132 @@ TEST(RBTremove, negative){
     EXPECT_EQ(status2, -1);
 
 }
+void print(std::vector <float> const &a, int size) {
+   //cout << " VALUES TO ARE: " ; 
+   for(int i=0; i < size; i++) {
+   std::cout << a.at(i) << ' ';
+   }
+   cout << "\n";
+}
+TEST(RBTtime, positive){
+    vector<float> list_random_numbers;
+    /*Intervals*/
+    int lower = 100;
+    int upper =   500;
+    int status = 0;
+    srand((unsigned) time(0));
+    /*Aleatory size for vector*/
+    int size = (rand() %(upper - lower + 1)) + lower;
+    /*File vector with random numbers*/
+    for (int i = 1; i <= size; i++)
+        list_random_numbers.push_back((rand() %(upper - 1 + 1)) + 1);
+    /*Remove repetitive elements*/
+    sort(list_random_numbers.begin(), list_random_numbers.end());
+    list_random_numbers.erase( unique( list_random_numbers.begin(), list_random_numbers.end() ), list_random_numbers.end() );
+    vector<float> n_last_elements(list_random_numbers.end() - 100, list_random_numbers.end());
+    int size_list = static_cast<int>(list_random_numbers.size());
+    cout << " Size of elements to insert : "<< size_list << "\n";
+    /*Create the tree for random list less its last 100 elements*/
+    RBT_node* new_root_node = new RBT_node ;
+    RBT_node* in_root = new  RBT_node;
+    RBT_node* new_root = new RBT_node;
+    float init_root_value = list_random_numbers[0];
+    in_root->value = init_root_value;
+    in_root->color = 'B';
+    for (int j = 1; j < size_list-100; j++) {
+        RBT_node* new_node = new RBT_node;
+        new_node->value = list_random_numbers[j];
+        status = RBT_node_add(in_root, new_node, &new_root);
+        in_root = new_root;
+    }
+    /*Insert its last 100 elements*/
+    clock_t start, end;
+    ofstream file;
+    file.open("./samples_time.txt");
+    cout << "Output file:  samples_time.txt " << "\n";
+    for (int j = size_list-100; j < size_list; j++) {
+        RBT_node* new_node = new RBT_node;
+        new_node->value = list_random_numbers[j];
+        // auto t1 = std::chrono::high_resolution_clock::now();
+        start = clock();
+        status = RBT_node_add(in_root, new_node, &new_root);
+        end = clock();
+        double duration_sec = double(end-start)/CLOCKS_PER_SEC;
+        // auto t2 = std::chrono::high_resolution_clock::now();
+        // auto duration = std::chrono::duration_cast<std::chrono::microseconds>( t2-t1 ).count();
+        file << j <<"," << duration_sec << "\n";
+        in_root = new_root;
+    }
+    file.close();
 
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();
 }
+
+
+// TEST(RBTinsert, positive){
+//       //Vector
+//       vector<float> list;
+//       //intervals
+//       int lower = 100;
+//       int upper =   100000;
+//       srand((unsigned) time(0));
+//       //For Aleatory size
+//       int size = (rand() %(upper - lower + 1)) + lower;
+//       //int x = 0 ;
+//       //File vecor with random numbers
+//       for (int i = 1; i <= size; i++)
+//           list.push_back((rand() %(upper - 1 + 1)) + 1);
+
+//       // Remove repetitive elements
+//       //order numbers then erase repetitive elements
+//       sort(list.begin(), list.end());
+//       list.erase( unique( list.begin(), list.end() ), list.end() );
+
+//     //Creation of struct
+//     RBT_node* in_root = new  RBT_node;
+//     RBT_node* new_root = new RBT_node;
+//     int status;
+//     //First insert of values
+//     float init_root_value = list.at(0);
+//     in_root->value = init_root_value;
+//     in_root->color = 'B';
+//     for (j = 1; j < list.size(); j++) {
+//         RBT_node* new_node = new RBT_node;
+//         new_node->value = list.at(j);
+
+//         // Use auto keyword to avoid typing long
+//         // type definitions to get the timepoint
+//         // at this instant use function now()
+//         auto start = high_resolution_clock::now();
+//         status = RBT_node_add(in_root, new_node, &new_root);
+//         auto stop = high_resolution_clock::now();
+//         //if (status < 0) return status;
+//         auto duration = duration_cast<microseconds>(stop - start);
+//         in_root = new_root;
+//       }
+
+//       for (i = 0; i < 100; i++) {
+//         RBT_node* new_node = new RBT_node;
+//         new_node->value = list[j];
+
+//         // Use auto keyword to avoid typing long
+//         // type definitions to get the timepoint
+//         // at this instant use function now()
+
+//         auto start = high_resolution_clock::now();
+//         status = RBT_node_add(in_root, new_node, &new_root);
+//         auto stop = high_resolution_clock::now();
+//         //if (status < 0) return status;
+//         auto duration = duration_cast<microseconds>(stop - start);
+//         in_root = new_root;
+//       }
+
+
+
+
+//       //*new_root_node = in_root;
+// }
