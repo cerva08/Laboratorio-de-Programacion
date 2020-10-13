@@ -56,26 +56,74 @@ void RBT_print(
   struct RBT_node *new_root_node,
   string indent,
   bool last);
-  struct RBT_node* RBT_node_add_fix(
+
+struct RBT_node* RBT_node_add_fix(
   struct RBT_node* in_root,
   struct RBT_node* new_node);
 
-// TODO: añadir comentarios
+
+/**
+ * RBT_right_rotate
+ * Toma un nodo sobre el cual hacer la rotación, y rota hacia la derecha en torno a ese nodo.
+ * Retorna la raíz del arbol por si esta cambió.
+ *
+ * @param [in]  in_root         es el nodo raíz del árbol
+ * @param [in]  rotation_node   es el nodo sobre el cual hacer la rotación
+ *
+ * @returns struct RBT_node*   un puntero hacia el nodo raíz
+ *                             
+ */
 struct RBT_node* RBT_right_rotate(
-    struct RBT_node*  in_root, 
-    struct RBT_node*  rotation_node);
+  struct RBT_node*  in_root, 
+  struct RBT_node*  rotation_node);
 
+
+/**
+ * RBT_left_rotate
+ * Toma un nodo sobre el cual hacer la rotación, y rota hacia la izquierda en torno a ese nodo.
+ * Retorna la raíz del arbol por si esta cambió.
+ *
+ * @param [in]  in_root         es el nodo raíz del árbol
+ * @param [in]  rotation_node   es el nodo sobre el cual hacer la rotación
+ *
+ * @returns struct RBT_node*   un puntero hacia el nodo raíz
+ *                             
+ */
 struct RBT_node* RBT_left_rotate(
-    struct RBT_node*  in_root, 
-    struct RBT_node*  rotation_node);
+  struct RBT_node*  in_root, 
+  struct RBT_node*  rotation_node);
 
+
+/**
+ * RBT_Transplant
+ * Realiza la operación de cambiar un nodo por otro.
+ * Retorna la raíz del arbol por si esta cambió.
+ *
+ * @param [in]  in_root           es el nodo raíz del árbol
+ * @param [in]  node_to_replace   es el nodo que va a ser reemplazado
+ * @param [in]  replacing_node    es el nodo que va a reemplazar a otro
+ *
+ * @returns struct RBT_node*      un puntero hacia el nodo raíz
+ *                             
+ */
 struct RBT_node* RBT_Transplant(
-    struct RBT_node* in_root, 
-    struct RBT_node* node_to_replace, 
-    struct RBT_node* replacing_node);
+  struct RBT_node* in_root, 
+  struct RBT_node* node_to_replace, 
+  struct RBT_node* replacing_node);
 
+
+/**
+ * get_min-address
+ * Recibe un nodo, revisa si es hijo derecho o izquierdo y retorna su dirección de memoria.
+ *
+ * @param [in]  min            es el nodo a revisar
+ *
+ * @returns struct RBT_node*   un puntero al nodo requerido
+ *                             
+ */
 struct RBT_node* get_min_address(
-    struct RBT_node min);
+  struct RBT_node min);
+
 
 /**
  * RBT_node_add
@@ -112,9 +160,23 @@ int RBT_node_remove(
   float  value_to_remove,
   struct RBT_node *new_root);
 
+
+/**
+ * RBT_node_remove_fixup
+ * Realiza las correcciones necesarias para mantener las propiedades de un RBT.
+ * Devuelve el nuevo root si este cambió.
+ *
+ * @param [in]  in_root        es el nodo raíz original del árbol
+ * @param [in]  node_x         es el nodo que se marca como "double black" para hacer las correcciones
+ * 
+ *
+ * @returns struct RBT_node*   un puntero a la raíz del árbol
+ *                             
+ */
 struct RBT_node* RBT_remove_fixup(
   struct RBT_node* in_root, 
   struct RBT_node* node_x);
+
 
 /**
  * RBT_search
